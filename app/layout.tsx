@@ -12,9 +12,18 @@ const cairo = Cairo({
 });
 
 export const metadata: Metadata = {
-  title: 'نبل وابتكار للدعاية والاعلان',
-  description: 'متجر متخصص في خدمات الدعاية والإعلان - طباعة، لوحات، ستيكرات، هدايا دعائية',
+  title: 'نبل وابتكار للدعاية والإعلان | طباعة وتصميم احترافي',
+  description: 'متجر متخصص في خدمات الدعاية والإعلان - طباعة رقمية، لوحات إعلانية، ستيكرات، هدايا دعائية، مطبوعات تجارية في الرياض',
+  keywords: 'دعاية، إعلان، طباعة، لوحات، ستيكرات، هدايا دعائية، تصميم',
+  creator: 'نبل وابتكار',
+  publisher: 'نبل وابتكار للدعاية والإعلان',
   generator: 'v0.app',
+  viewport: {
+    width: 'device-width',
+    initialScale: 1,
+    maximumScale: 5,
+    userScalable: true,
+  },
   icons: {
     icon: [
       {
@@ -32,6 +41,12 @@ export const metadata: Metadata = {
     ],
     apple: '/apple-icon.png',
   },
+  openGraph: {
+    title: 'نبل وابتكار للدعاية والإعلان',
+    description: 'خدمات دعاية وإعلان احترافية - طباعة وتصميم بأعلى جودة',
+    type: 'website',
+    locale: 'ar_SA',
+  },
 }
 
 export default function RootLayout({
@@ -41,6 +56,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" dir="rtl" className="bg-background">
+      <head>
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#3b82f6" />
+      </head>
       <body className={`${cairo.variable} font-sans antialiased`}>
         <CartProvider>
           <Header />

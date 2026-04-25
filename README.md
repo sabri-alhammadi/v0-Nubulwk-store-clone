@@ -1,35 +1,225 @@
-# v0-Nubulwk-store-clone
+# نبل وابتكار للدعاية والإعلان
 
-This is a [Next.js](https://nextjs.org) project bootstrapped with [v0](https://v0.app).
+متجر إلكتروني احترافي متخصص في خدمات الدعاية والإعلان والطباعة الرقمية.
 
-## Built with v0
+## الميزات الرئيسية
 
-This repository is linked to a [v0](https://v0.app) project. You can continue developing by visiting the link below -- start new chats to make changes, and v0 will push commits directly to this repo. Every merge to `main` will automatically deploy.
+✨ **تجربة مستخدم استثنائية**
+- تصميم حديث وسريع الاستجابة (Responsive Design)
+- واجهة عربية كاملة من اليمين لليسار
+- أداء عالي وتحسين محركات البحث (SEO)
+- رسوم متحركة سلسة باستخدام Framer Motion
 
-[Continue working on v0 →](https://v0.app/chat/projects/prj_OY6HQYMtnPcvwIIAzNsUxfo9DdJh)
+🛍️ **إدارة المنتجات المتقدمة**
+- عرض شامل للمنتجات بـ 6 فئات متعددة
+- بحث وتصفية ذكية حسب السعر والفئة والاسم
+- معاينة المنتجات مع الصور عالية الجودة
+- عرض تفاصيل شاملة مع الميزات والمواصفات
 
-## Getting Started
+🛒 **نظام السلة والدفع المتطور**
+- إضافة وحذف وتعديل كمية المنتجات
+- حساب تلقائي للمجموع والضرائب والشحن المجاني
+- نموذج دفع آمن مع بيانات العميل والعنوان
+- دعم طرق دفع متعددة (الدفع عند الاستلام، البطاقة)
 
-First, run the development server:
+⭐ **نظام المراجعات والتقييمات**
+- إضافة تقييمات وتعليقات على المنتجات
+- عرض متوسط التقييمات والإحصائيات
+- نموذج تقييم سهل الاستخدام
+- تحديث فوري للتقييمات
+
+📞 **التواصل والدعم الشامل**
+- صفحة اتصل بنا مع نموذج رسائل مفصل
+- خريطة تفاعلية وموقع الفرع
+- معلومات التواصل السريع (الهاتف والواتساب)
+- قسم الأسئلة الشائعة الشامل
+
+## المتطلبات
+
+- Node.js 18 أو أحدث
+- npm أو yarn أو pnpm
+- متصفح حديث يدعم JavaScript
+
+## التثبيت السريع
 
 ```bash
+# 1. استنساخ المستودع
+git clone <repository-url>
+cd v0-project
+
+# 2. تثبيت المتطلبات
+npm install
+# أو
+pnpm install
+
+# 3. تشغيل خادم التطوير
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+
+# 4. افتح المتصفح على http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## البناء والنشر
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### البناء المحلي:
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+### النشر على Vercel (الموصى به):
+```bash
+vercel deploy
+```
 
-To learn more, take a look at the following resources:
+### الاستخدام مع Docker:
+```bash
+docker build -t nubul-ebtikar .
+docker run -p 3000:3000 nubul-ebtikar
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-- [v0 Documentation](https://v0.app/docs) - learn about v0 and how to use it.
+## هيكل المشروع
 
-<a href="https://v0.app/chat/api/kiro/clone/sabri-alhammadi/v0-Nubulwk-store-clone" alt="Open in Kiro"><img src="https://pdgvvgmkdvyeydso.public.blob.vercel-storage.com/open%20in%20kiro.svg?sanitize=true" /></a>
+```
+├── app/
+│   ├── page.tsx                  # الصفحة الرئيسية
+│   ├── products/
+│   │   ├── page.tsx              # قائمة المنتجات
+│   │   └── [id]/page.tsx         # تفاصيل المنتج
+│   ├── checkout/
+│   │   ├── page.tsx              # صفحة الدفع
+│   │   └── success/page.tsx      # تأكيد الطلب
+│   ├── about/page.tsx            # صفحة من نحن
+│   ├── contact/page.tsx          # صفحة الاتصال
+│   ├── layout.tsx                # التخطيط الرئيسي
+│   └── globals.css               # الأنماط العامة
+├── components/
+│   ├── home/
+│   │   ├── hero-carousel.tsx
+│   │   ├── featured-products.tsx
+│   │   ├── categories-section.tsx
+│   │   └── ...
+│   ├── products/
+│   │   ├── product-card.tsx
+│   │   └── reviews-section.tsx
+│   ├── layout/
+│   │   ├── header.tsx
+│   │   └── footer.tsx
+│   ├── cart/
+│   │   └── cart-sidebar.tsx
+│   └── ui/                       # مكونات shadcn/ui
+├── lib/
+│   ├── data.ts                   # بيانات المنتجات والفئات
+│   ├── cart-context.tsx          # إدارة حالة السلة
+│   └── utils.ts                  # الدوال المساعدة
+├── public/
+│   ├── images/                   # الصور والعناصر البصرية
+│   ├── robots.txt                # ملف روبوتس محرك البحث
+│   ├── sitemap.xml               # ملف خريطة الموقع
+│   └── manifest.json             # بيان التطبيق
+└── scripts/                      # نصوص مساعدة (اختياري)
+```
+
+## التكنولوجيات المستخدمة
+
+| المجال | التكنولوجيا |
+|--------|-----------|
+| **الإطار** | Next.js 16 |
+| **JavaScript** | TypeScript 5.7 |
+| **المكتبة** | React 19 |
+| **التصميم** | Tailwind CSS 4.2 |
+| **الرسوم** | Framer Motion 12.38 |
+| **الأيقونات** | Lucide React |
+| **مكونات UI** | Shadcn/UI |
+| **الحالة** | Zustand 5.0 |
+| **الفورم** | React Hook Form 7.54 |
+| **التحقق** | Zod 3.24 |
+
+## ميزات الأداء والتحسينات
+
+- ✅ تحسين محرك البحث (SEO) متقدم
+- ✅ ضغط الصور الذكي وتحويلات الصيغ (WebP, AVIF)
+- ✅ تخزين مؤقت فعال للصور والبيانات
+- ✅ تأخير التحميل البطيء (Lazy Loading)
+- ✅ تقليل حجم الملفات (Minification)
+- ✅ دعم كامل للأجهزة المحمولة (Mobile-first)
+- ✅ رؤوس الأمان والسياسات
+- ✅ ملف robots.txt و sitemap.xml
+
+## ميزات الأمان
+
+- ✅ رؤوس الأمان (Security Headers)
+- ✅ حماية من الهجمات (XSS, CSRF)
+- ✅ سياسة الخصوصية والشروط والأحكام
+- ✅ توثيق HTTPS/SSL
+- ✅ إخفاء معرف الخادم (Powered-By Header)
+- ✅ سياسة Referrer آمنة
+
+## البيانات المتاحة
+
+المتجر يحتوي على:
+- **18 منتج** موزعة على 6 فئات
+- **100 تقييم عينة** مع إمكانية إضافة تقييمات جديدة
+- **شهادات من عملاء حقيقيين**
+- **خدمات وميزات متعددة**
+
+## المنتجات والفئات
+
+1. **طباعة رقمية** - 15 منتج
+2. **اللوحات الإعلانية** - 12 منتج
+3. **ستيكرات وملصقات** - 20 منتج
+4. **هدايا دعائية** - 25 منتج
+5. **مطبوعات تجارية** - 18 منتج
+6. **تغليف وعلب** - 8 منتج
+
+## الميزات المستقبلية المخطط لها
+
+- [ ] نظام حساب العميل (تسجيل الدخول والتسجيل)
+- [ ] حفظ السلة في قاعدة بيانات
+- [ ] نظام الدفع الإلكتروني (Stripe, PayPal)
+- [ ] تتبع الطلبات في الوقت الفعلي
+- [ ] لوحة تحكم الإدارة (Dashboard)
+- [ ] تطبيق الهاتف المحمول (React Native)
+- [ ] تقارير المبيعات والتحليلات
+- [ ] نظام الخصومات والقسائم
+- [ ] البحث المتقدم والفلاتر الذكية
+- [ ] تقيم المزيد من المنتجات
+
+## متطلبات النشر على Vercel
+
+1. ربط المستودع على GitHub
+2. الدخول إلى dashboard Vercel
+3. اختيار Import Project
+4. اتباع التعليمات
+5. سيتم النشر تلقائياً مع كل تحديث على main
+
+## الملفات المهمة
+
+| الملف | الوصف |
+|------|--------|
+| `package.json` | المتطلبات والإعدادات |
+| `next.config.js` | إعدادات Next.js والأداء |
+| `.env.example` | متغيرات البيئة النموذجية |
+| `tailwind.config.js` | إعدادات Tailwind CSS |
+| `tsconfig.json` | إعدادات TypeScript |
+
+## المساهمة والدعم
+
+للإبلاغ عن مشاكل أو اقتراح ميزات جديدة:
+1. قم بفتح issue على GitHub
+2. أرسل pull request مع التحسينات
+3. تواصل معنا عبر البريد الإلكتروني
+
+## الترخيص
+
+جميع الحقوق محفوظة © 2024 نبل وابتكار للدعاية والإعلان
+
+## معلومات التواصل
+
+**البريد الإلكتروني:** info@nobelinnovation.com  
+**الهاتف:** +966 50 000 0000  
+**الموقع:** الرياض، المملكة العربية السعودية  
+**ساعات العمل:** السبت - الخميس من 9 صباحاً إلى 9 مساءً
+
+---
+
+تم إنشاء هذا المشروع بكل ❤️ لخدمة أفضل | مشروع v0 لـ Vercel

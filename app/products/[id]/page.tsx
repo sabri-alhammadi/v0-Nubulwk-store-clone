@@ -10,6 +10,7 @@ import { Button } from '@/components/ui/button'
 import { useCart } from '@/lib/cart-context'
 import { getProductById, getProductsByCategory, products } from '@/lib/data'
 import { ProductCard } from '@/components/products/product-card'
+import { ReviewsSection } from '@/components/products/reviews-section'
 
 interface PageProps {
   params: Promise<{ id: string }>
@@ -248,6 +249,18 @@ export default function ProductPage({ params }: PageProps) {
             </div>
           </motion.div>
         </div>
+
+        {/* Reviews Section */}
+        <motion.section
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-20"
+        >
+          <div className="bg-card rounded-2xl p-8 border border-border/50">
+            <ReviewsSection productId={id} />
+          </div>
+        </motion.section>
 
         {/* Related Products */}
         {relatedProducts.length > 0 && (
