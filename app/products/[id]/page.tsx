@@ -1,3 +1,5 @@
+"use client"
+
 import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -11,11 +13,11 @@ import { ProductCard } from '@/components/products/product-card'
 import { ReviewsSection } from '@/components/products/reviews-section'
 
 interface PageProps {
-  params: Promise<{ id: string }>
+  params: { id: string }
 }
 
 export default function ProductPage({ params }: PageProps) {
-  const id = params.id as string
+  const id = params.id
   const product = getProductById(id)
   const [quantity, setQuantity] = useState(1)
   const { addItem } = useCart()
