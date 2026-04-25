@@ -1,16 +1,13 @@
-"use client"
-
-import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { motion } from 'framer-motion'
-import { ShoppingCart, Heart, Share2, Check, ChevronLeft, Minus, Plus, Star, Truck, Shield, RotateCcw, Package } from 'lucide-react'
+import { ChevronLeft, Star, Truck, Shield, RotateCcw, Check, Heart } from 'lucide-react'
 import { Button } from '@/components/ui/button'
-import { useCart } from '@/lib/cart-context'
 import { getProductById, getProductsByCategory, products } from '@/lib/data'
 import { ProductCard } from '@/components/products/product-card'
 import { ReviewsSection } from '@/components/products/reviews-section'
+import { ProductActions } from '@/components/products/product-actions'
 
 interface PageProps {
   params: { id: string }
@@ -19,8 +16,6 @@ interface PageProps {
 export default function ProductPage({ params }: PageProps) {
   const id = params.id
   const product = getProductById(id)
-  const [quantity, setQuantity] = useState(1)
-  const { addItem } = useCart()
 
   if (!product) {
     notFound()
@@ -29,18 +24,6 @@ export default function ProductPage({ params }: PageProps) {
   const relatedProducts = getProductsByCategory(product.categorySlug)
     .filter(p => p.id !== product.id)
     .slice(0, 4)
-
-  const handleAddToCart = () => {
-    for (let i = 0; i < quantity; i++) {
-      addItem({
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.image,
-        category: product.category,
-      })
-    }
-  }
 
   const discount = product.originalPrice 
     ? Math.round((1 - product.price / product.originalPrice) * 100) 
@@ -184,69 +167,8 @@ export default function ProductPage({ params }: PageProps) {
               </span>
             </div>
 
-            {/* Quantity & Add to Cart */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-6">
-              <div className="flex items-center bg-muted/50 rounded-xl overflow-hidden">
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="rounded-none h-12"
-                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
-                  disabled={quantity <= 1}
-                >
-                  <Minus className="h-4 w-4" />
-                </Button>
-                <span className="w-16 text-center font-bold text-lg">{quantity}</span>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="rounded-none h-12"
-                  onClick={() => setQuantity(quantity + 1)}
-                >
-                  <Plus className="h-4 w-4" />
-                </Button>
-              </div>
-
-              <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="flex-1">
-                <Button
-                  size="lg"
-                  className="w-full h-12 text-lg rounded-xl shadow-lg shadow-primary/25"
-                  onClick={handleAddToCart}
-                  disabled={!product.inStock}
-                >
-                  <ShoppingCart className="h-5 w-5 ml-2" />
-                  أضف للسلة
-                </Button>
-              </motion.div>
-            </div>
-
-            {/* Actions */}
-            <div className="flex gap-4 pt-6 border-t border-border/50">
-              <Button variant="outline" className="rounded-xl">
-                <Heart className="h-4 w-4 ml-2" />
-                أضف للمفضلة
-              </Button>
-              <Button variant="outline" className="rounded-xl">
-                <Share2 className="h-4 w-4 ml-2" />
-                مشاركة
-              </Button>
-            </div>
-
-            {/* Trust badges */}
-            <div className="grid grid-cols-3 gap-4 mt-8 pt-6 border-t border-border/50">
-              {[
-                { icon: Truck, label: 'شحن سريع' },
-                { icon: Shield, label: 'ضمان الجودة' },
-                { icon: RotateCcw, label: 'استرجاع سهل' },
-              ].map((item, index) => (
-                <div key={index} className="text-center">
-                  <div className="w-12 h-12 bg-primary/10 rounded-xl flex items-center justify-center mx-auto mb-2">
-                    <item.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <p className="text-sm text-muted-foreground">{item.label}</p>
-                </div>
-              ))}
-            </div>
+            {/* Product Actions */}
+            <ProductActions product={product} />
           </motion.div>
         </div>
 
