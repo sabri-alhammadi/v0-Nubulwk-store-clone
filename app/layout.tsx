@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Cairo } from 'next/font/google'
+import { Cairo, Poppins, Inter } from 'next/font/google'
 import { Analytics } from '@vercel/analytics/next'
 import './globals.css'
 import { Header } from '@/components/layout/header'
@@ -9,7 +9,20 @@ import { CartProvider } from '@/lib/cart-context'
 const cairo = Cairo({ 
   subsets: ["arabic", "latin"],
   variable: '--font-cairo',
-});
+  weight: ['400', '500', '600', '700', '800']
+})
+
+const poppins = Poppins({
+  subsets: ['latin'],
+  variable: '--font-poppins',
+  weight: ['400', '500', '600', '700', '800']
+})
+
+const inter = Inter({
+  subsets: ['latin'],
+  variable: '--font-inter',
+  weight: ['400', '500', '600', '700']
+})
 
 export const metadata: Metadata = {
   title: 'نبل وابتكار للدعاية والإعلان | طباعة وتصميم احترافي',
@@ -60,7 +73,7 @@ export default function RootLayout({
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#3b82f6" />
       </head>
-      <body className={`${cairo.variable} font-sans antialiased`}>
+      <body className={`${cairo.variable} ${poppins.variable} ${inter.variable} font-sans antialiased`}>
         <CartProvider>
           <Header />
           <main className="min-h-screen">
