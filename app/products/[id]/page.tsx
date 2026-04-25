@@ -1,6 +1,4 @@
-"use client"
-
-import { use, useState } from 'react'
+import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { notFound } from 'next/navigation'
@@ -17,7 +15,7 @@ interface PageProps {
 }
 
 export default function ProductPage({ params }: PageProps) {
-  const { id } = use(params)
+  const id = params.id as string
   const product = getProductById(id)
   const [quantity, setQuantity] = useState(1)
   const { addItem } = useCart()
